@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Countdown Timer</title>
+  <style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(bakra.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .countdown-container {
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    cursor: pointer;
+    border: 2px solid red;
+  }
+  .h1:hover{
+  background-color: blue;
+  color: red;
+    
+  }
+  
+  #countdown {
+    font-size: 36px;
+    color: #333;
+  }
+  </style>  
+
+</head>
+<body>
+
+  <div class="countdown-container">
+    <h1>Countdown Timer For EID-UL-DHA</h1>
+    <div id="countdown"></div>
+  </div>
+  <script>
+function updateCountdown() {
+  const targetDate = new Date("2024-06-17T00:00:00");
+  const currentDate = new Date();
+  const timeDifference = targetDate - currentDate;
+
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  document.getElementById('countdown').innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+
+
+  </script>
+
+
+</body>
+</html>

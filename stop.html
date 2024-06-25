@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square Stopwatch</title>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(117, 63, 199);
+  background-image: url(stop.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.square {
+  width: 300px;
+  height: 300px;
+  background-color: #6C63FF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stopwatch {
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+</style>
+</head>
+<body>
+<div class="square">
+  <div class="stopwatch">
+    <div id="display">00:00:00:000</div>
+    <button id="startButton" onclick="startStopwatch()">Start</button>
+    <button id="resumeButton" onclick="resumeStopwatch()" disabled>Resume</button>
+    <button id="stopButton" onclick="stopStopwatch()" disabled>Stop</button>
+    <button id="resetButton" onclick="resetStopwatch()" disabled>Reset</button>
+  </div>
+</div>
+
+<script>
+let startTime;
+let elapsedTime = 0;
+let timerInterval;
+
+function startStopwatch() {
+  startTime = Date.now() - elapsedTime;
+  timerInterval = setInterval(updateTime, 10);
+  document.getElementById("startButton").disabled = true;
+  document.getElementById("resumeButton").disabled = true;
+  document.getElementById("stopButton").disabled = false;
+  document.getElementById("resetButton").disabled = true;
+}
+
+function updateTime() {
+  const currentTime = Date.now();
+  elapsedTime = currentTime - startTime;
+  displayTime(elapsedTime);
+}
+
+function displayTime(time) {
+  const hours = Math.floor(time / (1000 * 60 * 60));
+  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  const milliseconds = time % 1000;
+  const formattedTime = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(milliseconds, 3)}`;
+  document.getElementById("display").textContent = formattedTime;
+}
+
+function pad(number, length = 2) {
+  return (number < 10 ? '0' : '') + number.toString().slice(-length);
+}
+
+function resumeStopwatch() {
+  startTime = Date.now() - elapsedTime;
+  timerInterval = setInterval(updateTime, 10);
+  document.getElementById("startButton").disabled = true;
+  document.getElementById("resumeButton").disabled = true;
+  document.getElementById("stopButton").disabled = false;
+  document.getElementById("resetButton").disabled = true;
+}
+
+function stopStopwatch() {
+  clearInterval(timerInterval);
+  document.getElementById("startButton").disabled = false;
+  document.getElementById("resumeButton").disabled = false;
+  document.getElementById("stopButton").disabled = true;
+  document.getElementById("resetButton").disabled = false;
+}
+
+function resetStopwatch() {
+  clearInterval(timerInterval);
+  elapsedTime = 0;
+  displayTime(elapsedTime);
+  document.getElementById("startButton").disabled = false;
+  document.getElementById("resumeButton").disabled = false;
+  document.getElementById("stopButton").disabled = true;
+  document.getElementById("resetButton").disabled = true;
+}
+</script>
+</body>
+</html>

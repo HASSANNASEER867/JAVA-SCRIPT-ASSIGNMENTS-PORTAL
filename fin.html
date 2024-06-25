@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #11111158;
+            border-radius: 3px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ea1926;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 12px;
+        }
+        button:hover {
+            background-color: #5639e8;
+        }
+        .result {
+            background-color: black;
+            color: bisque;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+     
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="input-group">
+        <label for="income">Income:</label>
+        <input type="number" id="income" placeholder="Enter income amount">
+    </div>
+    <div class="input-group">
+        <label for="expense">Expense:</label>
+        <input type="number" id="expense" placeholder="Enter expense amount">
+    </div>
+    <button onclick="submitIncome()">Submit Income</button>
+    <button onclick="submitExpense()">Submit Expense</button>
+
+    <div class="result">
+        <h3>Financial Summary</h3>
+        <p>Income: <span id="incomeTotal">0</span></p>
+        <p>Total Expenses of the Month: <span id="expenseTotal">0</span></p>
+        <p>Current Balance: <span id="balance">0</span></p>
+    </div>
+</div>
+
+<script>
+    let incomeTotal = 0;
+    let expenseTotal = 0;
+
+    function submitIncome() {
+        const incomeInput = document.getElementById('income');
+        const incomeAmount = parseFloat(incomeInput.value);
+        if (!isNaN(incomeAmount) && incomeAmount > 0) {
+            incomeTotal += incomeAmount;
+            updateDisplay();
+        } else {
+            alert("Please enter a valid income amount.");
+        }
+        incomeInput.value = '';
+    }
+
+    function submitExpense() {
+        const expenseInput = document.getElementById('expense');
+        const expenseAmount = parseFloat(expenseInput.value);
+        if (!isNaN(expenseAmount) && expenseAmount > 0) {
+            if (expenseAmount <= incomeTotal - expenseTotal) {
+                expenseTotal += expenseAmount;
+                updateDisplay();
+            } else {
+                alert("Expense amount exceeds current balance.");
+            }
+        } else {
+            alert("Please enter a valid expense amount.");
+        }
+        expenseInput.value = '';
+    }
+
+    function updateDisplay() {
+        const balance = incomeTotal - expenseTotal;
+        document.getElementById('incomeTotal').textContent = incomeTotal.toFixed(2);
+        document.getElementById('expenseTotal').textContent = expenseTotal.toFixed(2);
+        document.getElementById('balance').textContent = balance.toFixed(2);
+    }
+</script>
+
+</body>
+</html>

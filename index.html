@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Portal</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.box {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.2s;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+}
+
+.box-content {
+    padding: 1rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 0.5rem 0;
+}
+
+p {
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    color: white;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Assignment Portal</h1>
+    </header>
+    <main>
+        <div class="box">
+            <img src="data:image/jpeg;base64,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" alt="Assignment 1">
+            <div class="box-content">
+                <h2>Attendence portal</h2>
+                <p>Details about Assignment 1</p>
+                <a href="attend.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1400469622/photo/led-filament-tungsten-vintage-light-bulb-isolated-on-white-background.webp?b=1&s=170667a&w=0&k=20&c=ajnYFhAFAie_tlAhjeEKnPbMP5l30o6XWIKavConQJw=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>EVENT LISTENER</h2>
+                <p>Details about Assignment 2</p>
+                <a href="bulb.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1467391774/photo/calculator-3d-isometric-design-element-background.webp?b=1&s=170667a&w=0&k=20&c=ArOtJZDTPmwGFSMsKupheWH9UTXGJlp-9020MHEWFNk=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>CALCULATOR</h2>
+                <p>Details about Assignment 2</p>
+                <a href="cal.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/2008073120/photo/temporal-vortex.webp?b=1&s=170667a&w=0&k=20&c=RrPLpvxh0E39usrAw_Jvx7COne0xSIFS8vSU5INSOu8=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>CLOCK</h2>
+                <p>Details about Assignment 2</p>
+                <a href="clock.html" class="btn">View Assignment</a>
+            </div>
+        </div><div class="box">
+            <img src="https://media.istockphoto.com/id/841445186/photo/hourglass-flow.webp?b=1&s=170667a&w=0&k=20&c=sBOjzpXiY-8ycRLOSI-lptJHmZS7VgHK49lWOmMTpP4=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>COUNT DOWN</h2>
+                <p>Details about Assignment 2</p>
+                <a href="count-down.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://plus.unsplash.com/premium_photo-1673827176824-17dc61d5b384?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TlVNQkVSJTIwQ09VTlRFUnxlbnwwfHwwfHx8MA%3D%3D" alt="Assignment 2">
+            <div class="box-content">
+                <h2> COUNTER</h2>
+                <p>Details about Assignment 2</p>
+                <a href="counter.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.webp?b=1&s=170667a&w=0&k=20&c=Q73ir-wB0u0cUX1Ho6OABXrQEBoD9b8FFV4Bn_DsEB8=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>E-COMMERCE WEBSITE</h2>
+                <p>Details about Assignment 2</p>
+                <a href="ecom.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1323383001/photo/couple-videoconferencing-with-doctor-on-mobile-phone.webp?b=1&s=170667a&w=0&k=20&c=ALkDSyuCPIUaEZWc7b3Plqu2DIdZj1Qm3kkO5ymrxLY=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>EXPENSE TRACKER APP</h2>
+                <p>Details about Assignment 2</p>
+                <a href="fin.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/2156991809/photo/collection-of-fruits-vegetables-and-berries-isolated-on-white.webp?b=1&s=170667a&w=0&k=20&c=5-P_cVjoBM1MtzpUGLUcUuwVC_V8pyQXENdiLDV605Y=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>SUMMER FRUITS</h2>
+                <p>Details about Assignment 2</p>
+                <a href="foreach.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1279034523/photo/set-of-red-and-green-push-buttons.webp?b=1&s=170667a&w=0&k=20&c=kzCCCtcqVCJPQK_eBpF-GLOeYUKoznmY9D-0x0O8u-s=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>QUICK STOP GAME </h2>
+                <p>Details about Assignment 2</p>
+                <a href="quick.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/942676992/photo/stopwatch-on-digital-display.webp?b=1&s=170667a&w=0&k=20&c=T1o83strL-SmyyhvBcBC6tU0YYB7EkRjZQ8LdHj-31w=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>STOP WATCH</h2>
+                <p>Details about Assignment 2</p>
+                <a href="stop.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://images.unsplash.com/photo-1522069213448-443a614da9b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RElDRSUyMEdBTUV8ZW58MHx8MHx8fDA%3D" alt="Assignment 2">
+            <div class="box-content">
+                <h2> DICE GAME</h2>
+                <p>Details about Assignment 2</p>
+                <a href="testing.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1772098853/photo/3d-mail-envelope-icon-with-task-management-todo-check-list-in-hand-holding-minimal-email.webp?b=1&s=170667a&w=0&k=20&c=NRFciO6QC9NnXhA9s_0fCwKDV_f3FPrQynkuwjF1N5s=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>TODO LIST</h2>
+                <p>Details about Assignment 2</p>
+                <a href="todo!!.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+        </div>
+        <div class="box">
+            <img src="https://media.istockphoto.com/id/1289449088/photo/branches-covered-with-ice-after-freezing-rain-sparkling-ice-covered-everything-after-ice.webp?b=1&s=170667a&w=0&k=20&c=KmUu3hmpzMt22rs0DgfbOtQNbCM0NvycsaOsXGIv8qk=" alt="Assignment 2">
+            <div class="box-content">
+                <h2>WEATHER FORCASTING APP</h2>
+                <p>Details about Assignment 2</p>
+                <a href="weather.html" class="btn">View Assignment</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

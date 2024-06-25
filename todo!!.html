@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.login-container, .app-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10%;
+    background-color: bisque;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button onclick="login()">Login</button>
+    </div>
+    <div class="app-container" id="app-container" style="display:none;">
+        <h2>To-Do App</h2>
+        <div class="category-selector">
+            <label for="category">Select Category:</label>
+            <select id="category">
+                <option value="home">Home</option>
+                <option value="office">Office</option>
+                <option value="spare-time">Spare Time</option>
+            </select>
+        </div>
+        <div class="todo-creator">
+            <input type="text" id="todo-text" placeholder="Enter a new to-do">
+            <label for="category">Select priority:</label>
+            <select id="priority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button onclick="addTodo()">Add To-Do</button>
+        </div>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+function login() {
+    const email = document.getElementById('email').value;
+    if (email) {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('app-container').style.display = 'block';
+    } else {
+        alert('Please enter a valid email address.');
+    }
+}
+
+function addTodo() {
+    const category = document.getElementById('category').value;
+    const todoText = document.getElementById('todo-text').value;
+    const priority = document.getElementById('priority').value;
+
+    if (!category) {
+        alert('Please select a category.');
+        return;
+    }
+
+    if (todoText.trim() === '') {
+        alert('Please enter a to-do.');
+        return;
+    }
+
+    const todoList = document.getElementById('todo-list');
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<span>${todoText} (${category}, ${priority})</span>`;
+    todoList.appendChild(listItem);
+
+    document.getElementById('todo-text').value = '';
+}
+
+document.getElementById('email').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        login();
+    }
+});
+
+    </script>
+</body>
+</html>

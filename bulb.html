@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blowing Bulb</title>
+<style>
+    #bulb {
+        width: 200px;
+        height: auto;
+        transition: transform 0.5s;
+    }
+    #bulb:hover {
+        transform: scale(1.1);
+    }
+    .heading{
+        border: 2px solid black;
+    }
+    .heading:hover{
+        background-color: blue;
+        color: violet;
+    }
+</style>
+</head>
+<body>
+    
+<center>
+    <h1 class="heading">Event Listener</h1>
+    <img id="bulb" src="download.jpg" alt="Bulb">
+</center>
+
+<script>
+    const bulb = document.getElementById('bulb');
+
+    bulb.addEventListener('mouseenter', () => {
+        bulb.src = 'bulb.jpg';
+    });
+
+    bulb.addEventListener('mouseleave', () => {
+        bulb.src = 'download.jpg';
+    });
+</script>
+</body>
+</html>

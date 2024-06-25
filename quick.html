@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font: 1em sans-serif;
+            font-size: xx-large;
+            font-weight: bolder;
+            background-color: violet;
+            background-image: url(game.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            text-decoration: solid;
+            color: orangered;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>Quick Stop</h1> 
+    <ul>
+        <li>1.You have to click  before 1000</li>
+        <li>2.If number matches your number then you will win.</li>
+        <li>3.If it doesnt match then you are loss.</li>
+    </ul>
+    <h1 id="number">00</h1>
+    <div>
+        <input placeholder="Add Your number" id="user_input" />
+    </div>
+    <h4 id="result">-</h4>
+
+   <div class="main-btn">
+    <button id="start_btn" onclick="start()">start</button>
+    <button onclick="stop()">stop</button>
+
+   </div> 
+          
+   <script>
+
+var number_html = document.getElementById("number");
+var start_btn = document.getElementById("start_btn");
+var user_input = document.getElementById("user_input");
+var result = document.getElementById("result");
+
+var runningNumber = 0;
+var interval;
+
+function start() {
+  if (user_input.value) {
+    interval = setInterval(function () {
+      if (runningNumber >= 1000) {
+        clearInterval(interval);
+        runningNumber = 0;
+        number_html.innerText = runningNumber;
+        result.innerText = "You are late";
+        start_btn.disabled = false;
+      } else {
+        runningNumber++;
+        number_html.innerText = runningNumber;
+      }
+    }, 10);
+    start_btn.disabled = true;
+  } else {
+    alert("PLEASE ENTER A NUMBER");
+  }
+}
+function stop() {
+  console.log(user_input.value);
+  console.log(runningNumber);
+  clearInterval(interval);
+  if (user_input.value == runningNumber) {
+    result.innerText = "You Win";
+  } else {
+    result.innerText = "You Lose";
+  }
+  runningNumber = 0;
+  number_html.innerText = 0;
+  start_btn.disabled = false;
+}
+   </script>
+</body>
+</html>

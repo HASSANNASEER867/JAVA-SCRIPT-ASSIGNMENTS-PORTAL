@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Fruits</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            
+        }  
+        .main {
+            border-radius: 10px;
+            background-color: violet;
+            color: chartreuse;
+            width: 200px;
+        }
+        .fruit-box {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            display: inline-block;
+            width: 250px;
+            text-align: center;
+        }
+        .fruit-image:hover{
+          transition: ease-out ;
+          transition-timing-function: 0.5s;
+          cursor: pointer;
+        
+        }
+        .fruit-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .fruit-title {
+            font-size: 20px;
+            margin: 8px 0;
+        }
+        .fruit-description {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        .fruit-types {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        .fruit-buttons {
+            margin-top: 8px;
+        }
+        .fruit-buttons button {
+            margin: 4px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .update-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+  <center><h1 class="main">Summer Fruits</h1></center>
+    <div id="fruits-container">
+        <div class="fruit-box">
+            <img src="https://media.istockphoto.com/id/582305218/photo/sliced-red-ripe-watermelon-fruit-background-and-texture.webp?b=1&s=170667a&w=0&k=20&c=KYCJhtu2HEb8O58r5RdqmR1o7W4v5h-mJuk57I41T0w=" alt="Watermelon" class="fruit-image">
+            <div class="fruit-title">Watermelon</div>
+            <div class="fruit-description">Juicy and refreshing.</div>
+            <div class="fruit-types">Types: Seedless, Picnic, Icebox</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+        <div class="fruit-box">
+            <img src="https://media.istockphoto.com/id/680358946/photo/mango.webp?b=1&s=170667a&w=0&k=20&c=VPgqTgERA4jfWRQPVJCecn2oapQiUm4-Sy2cJQPX9eA=" alt="Mango" class="fruit-image">
+            <div class="fruit-title">Mango</div>
+            <div class="fruit-description">Sweet and tropical.</div>
+            <div class="fruit-types">Types: Alphonso, Haden, Kent</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+        <div class="fruit-box">
+            <img src="https://images.unsplash.com/photo-1531171596281-8b5d26917d8b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8MTUwJTIweCUyMDE1MCUyMHJlc29sdXRpb24lMjBwaWNzJTIwb2YlMjBwZWFjaHxlbnwwfHwwfHx8MA%3D%3D" alt="Peach" class="fruit-image">
+            <div class="fruit-title">Peach</div>
+            <div class="fruit-description">Sweet and fuzzy.</div>
+            <div class="fruit-types">Types: Clingstone, Freestone, Doughnut</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+        <div class="fruit-box">
+            <img src="https://media.istockphoto.com/id/175416078/photo/strawberries-with-dewdrops.webp?b=1&s=170667a&w=0&k=20&c=l754sxJkoqxyZbjlD9qlND1eQ3vyCNiAslN9IBmRH0w=" alt="Strawberry" class="fruit-image">
+            <div class="fruit-title">Strawberry</div>
+            <div class="fruit-description">Sweet and tart.</div>
+            <div class="fruit-types">Types: June-bearing, Ever-bearing, Day-neutral</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+        <div class="fruit-box">
+            <img src="https://images.unsplash.com/photo-1490885578174-acda8905c2c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fDE1MCUyMHglMjAxNTAlMjByZXNvbHV0aW9uJTIwcGljcyUyMG9mJTIwcGluZWFwcGxlfGVufDB8fDB8fHww" alt="Pineapple" class="fruit-image">
+            <div class="fruit-title">Pineapple</div>
+            <div class="fruit-description">Sweet and tangy.</div>
+            <div class="fruit-types">Types: Queen, Red Spanish, Sugarloaf</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+        <div class="fruit-box">
+            <img src="https://images.unsplash.com/photo-1528821099448-43ccebfbb899?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8MTUwJTIweCUyMDE1MCUyMHJlc29sdXRpb24lMjBwaWNzJTIwb2YlMjBjaGVycnl8ZW58MHx8MHx8fDA%3D" alt="Cherry" class="fruit-image">
+            <div class="fruit-title">Cherry</div>
+            <div class="fruit-description">Sweet and juicy.</div>
+            <div class="fruit-types">Types: Bing, Rainier, Sweetheart</div>
+            <div class="fruit-buttons">
+                <button class="update-btn" onclick="updateDescription(this)">UpdateDesc</button>
+                <button class="delete-btn" onclick="deleteFruitBox(this)">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateDescription(button) {
+            const fruitBox = button.parentElement.parentElement;
+            const descriptionDiv = fruitBox.querySelector('.fruit-description');
+            const newDescription = prompt('Enter new description:', descriptionDiv.textContent);
+            if (newDescription) {
+                descriptionDiv.textContent = newDescription;
+            }
+        }
+
+        function deleteFruitBox(button) {
+            const fruitBox = button.parentElement.parentElement;
+            fruitBox.remove();
+        }
+    </script>
+</body>
+</html>

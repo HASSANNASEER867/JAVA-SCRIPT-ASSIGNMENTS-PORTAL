@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beautiful Clock</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('clock_background.jpg'); /* Add your clock background image */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(clock.jpg);
+  }
+  
+  .clock-container, .date-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .box {
+    margin: 0 10px;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="clock-container">
+  <div class="box" id="hours">00</div>
+  <div class="box">:</div>
+  <div class="box" id="minutes">00</div>
+  <div class="box">:</div>
+  <div class="box" id="seconds">00</div>
+  <div class="box" id="ampm">AM</div>
+</div>
+<div class="date-container">
+  <div class="box" id="day">00</div>
+  <div class="box" id="month">00</div>
+  <div class="box" id="year">0000</div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0 hours)
+    
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    document.getElementById('ampm').textContent = ampm;
+  }
+  
+  function updateDate() {
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.toLocaleString('default', { month: 'short' });
+    const year = now.getFullYear();
+    const dayOfWeek = now.toLocaleString('default', { weekday: 'long' });
+    
+    document.getElementById('day').textContent = String(day).padStart(2, '0');
+    document.getElementById('month').textContent = month;
+    document.getElementById('year').textContent = year;
+  }
+  
+  setInterval(updateClock, 1000);
+  updateClock(); // Call initially to avoid delay in displaying clock
+  updateDate(); // Call initially to display date
+</script>
+</body>
+</html>
+```
+

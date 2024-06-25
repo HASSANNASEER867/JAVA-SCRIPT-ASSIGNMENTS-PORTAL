@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Attendance Portal</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: burlywood;
+    }
+    .button-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .button {
+        margin: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: goldenrod;
+        color: green;
+    }
+    .section-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        
+    }
+    .section {
+        width: 20%;
+        border: 1px solid #dddddd;
+        padding: 10px;
+        background-color: aqua;
+        color: violet;
+    }
+</style>
+</head>
+<body>
+
+<div class="section-container">
+    <div class="section" id="presentSection">
+        <h3>Present</h3>
+    </div>
+    <div class="section" id="absentSection">
+        <h3>Absent</h3>
+    </div>
+    <div class="section" id="leaveSection">
+        <h3>Leave</h3>
+    </div>
+</div>
+
+<table id="attendanceTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Father's Name</th>
+            <th>Roll Number</th>
+            <th>Class</th>
+            <th>Age</th>
+            <th>Status</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>Michael Doe</td>
+            <td>001</td>
+            <td>10th</td>
+            <td>16</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td>James Michael </td>
+            <td>Michael Doe</td>
+            <td>002</td>
+            <td>10th</td>
+            <td>18</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td> Robert Doe</td>
+            <td>Michael Doe</td>
+            <td>003</td>
+            <td>10th</td>
+            <td>17</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td> William Michael</td>
+            <td>Michael Doe</td>
+            <td>004</td>
+            <td>10th</td>
+            <td>14</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td>David robert </td>
+            <td>Richard </td>
+            <td>005</td>
+            <td>10th</td>
+            <td>12</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Joseph Charles</td>
+            <td>Charles </td>
+            <td>006</td>
+            <td>10th</td>
+            <td>13</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td> Charles Thomas</td>
+            <td> Thomas</td>
+            <td>007</td>
+            <td>10th</td>
+            <td>17</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td> Robert William</td>
+            <td>William </td>
+            <td>008</td>
+            <td>10th</td>
+            <td>15</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Richard William </td>
+            <td> William</td>
+            <td>009</td>
+            <td>10th</td>
+            <td>15</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+        <tr>
+            <td> Thomas Robert</td>
+            <td>Robert </td>
+            <td>10</td>
+            <td>10th</td>
+            <td>16</td>
+            <td>
+                <button class="button presentBtn">Present</button>
+                <button class="button absentBtn">Absent</button>
+                <button class="button leaveBtn">Leave</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    const presentSection = document.getElementById('presentSection');
+    const absentSection = document.getElementById('absentSection');
+    const leaveSection = document.getElementById('leaveSection');
+
+    function addToSection(studentName, status) {
+        const studentElement = document.createElement('p');
+        studentElement.textContent = studentName;
+        
+        switch(status) {
+            case 'Present':
+                presentSection.appendChild(studentElement);
+                break;
+            case 'Absent':
+                absentSection.appendChild(studentElement);
+                break;
+            case 'Leave':
+                leaveSection.appendChild(studentElement);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const presentBtns = document.querySelectorAll('.presentBtn');
+    const absentBtns = document.querySelectorAll('.absentBtn');
+    const leaveBtns = document.querySelectorAll('.leaveBtn');
+
+    presentBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const studentName = this.parentNode.parentNode.children[0].textContent;
+            addToSection(studentName, 'Present');
+        });
+    });
+
+    absentBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const studentName = this.parentNode.parentNode.children[0].textContent;
+            addToSection(studentName, 'Absent');
+        });
+    });
+
+    leaveBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const studentName = this.parentNode.parentNode.children[0].textContent;
+            addToSection(studentName, 'Leave');
+        });
+    });
+</script>
+
+</body>
+</html>

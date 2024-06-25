@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .search{
+            margin: 20px;
+            padding: 15px;
+            width: 80px;
+            display: inline;
+        }
+        .item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 150px;
+            text-align: center;
+        }
+        .item img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+     <h1>E-Commerce Store</h1>
+
+<div class="search">
+    <select id="priceFilter" onchange="filterItems()">
+        <option value="200">All</option>
+        <option value="50">Less than $50</option>
+        <option value="100">Less than $100</option>
+        <option value="150">Less than $150</option>
+        <option value="200">Less than $200</option>
+    </select>
+
+    <input type="text" id="searchBar" placeholder="Search items by name" onkeyup="searchItems()">
+</div>
+    
+
+    <div class="container" id="itemsContainer">
+        <!-- Items will be dynamically added here -->
+    </div>
+
+    <script>
+        // Sample data
+        const items = [
+            { id: 1, name: 'Men Shirt', price: 10, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 20, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 30, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 40, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 50, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 70, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 95, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 100, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 110, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 120, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 130, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 140, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 150, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 160, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 170, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 180, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 190, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 200, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 140, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 120, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 30, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 45, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 55, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 65, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 1, name: 'Men Shirt', price: 25, category: 'Men', img: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWVuJTIwZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D' },
+            { id: 2, name: 'Women Dress', price: 29, category: 'Women', img: 'https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            { id: 3, name: 'Kids Fashion', price: 15, category: 'Kids', img: 'https://images.unsplash.com/photo-1541015492536-31d513c59861?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGtpZHMlMjBmYXNoaW9ufGVufDB8fDB8fHww' },
+            
+        ];
+
+        function displayItems(filteredItems) {
+            const container = document.getElementById('itemsContainer');
+            container.innerHTML = '';
+            filteredItems.forEach(item => {
+                container.innerHTML += `
+                    <div class="item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>$${item.price}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function filterItems() {
+            const maxPrice = document.getElementById('priceFilter').value;
+            const filteredItems = items.filter(item => item.price <= maxPrice);
+            displayItems(filteredItems);
+        }
+
+        function searchItems() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchTerm));
+            displayItems(filteredItems);
+        }
+
+        // Initial display of all items
+        displayItems(items);
+    </script>
+
+</body>
+</html>
