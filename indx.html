@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>PASSWORD GENERATOR</title>
+<style>
+    body{
+        background-image: url("https://media.istockphoto.com/id/1346223165/photo/encryption-your-data-binary-code-and-digital-lock-hacker-attack-and-data-breach-big-data-with.jpg?s=1024x1024&w=is&k=20&c=JJ-fCEmaInOhepWmnbRUe3Gonshg4lVs5foz2Zu5wxU=");
+        background-size: cover;   
+    }
+
+    .main{
+        font-size: xx-large;
+        text-align: center;
+        color: white;
+       
+    }
+    .main-2{
+        font-size: xx-large;
+        text-align: center;
+        color: white;
+    }
+    .btn{
+        font-size: x-large;
+        font-weight: bold;
+        font-style: oblique;
+        cursor: pointer;
+        background-color: black;
+        color: white;
+
+    }
+    .btn:hover{
+        text-transform: uppercase;
+        transition-timing-function: linear;
+    }
+
+   
+</style>
+</head>
+
+<body>
+    <div class="main">
+        <h1> PASSWORD GENERATOR</h1>
+        <form id="passwordForm">
+            <label for="length">Password Length:</label>
+            <input type="number" id="length" min="1" required><br><br>
+    
+            <label for="numDigits">Number of Numeric Digits:</label>
+            <input type="number" id="numDigits" min="0" required><br><br>
+    
+            <label for="numUppercase">Number of Uppercase Letters:</label>
+            <input type="number" id="numUppercase" min="0" required><br><br>
+    
+            <label for="numLowercase">Number of Lowercase Letters:</label>
+            <input type="number" id="numLowercase" min="0" required><br><br>
+    
+            <button class="btn" type="button" onclick="generatePassword()">Generate Password</button>
+        </form>
+    </div>
+    
+
+    <div class="main-2">
+        <h2>Generated Password:</h2>
+    <p id="result"></p>
+    </div>
+
+    <script>
+        function generatePassword() {
+            // Get user input
+            const length = parseInt(document.getElementById('length').value);
+            const numDigits = parseInt(document.getElementById('numDigits').value);
+            const numUppercase = parseInt(document.getElementById('numUppercase').value);
+            const numLowercase = parseInt(document.getElementById('numLowercase').value);
+
+            // Validate input
+            if (numDigits + numUppercase + numLowercase > length) {
+                alert('Total number of characters exceeds password length.');
+                return;
+            }
+
+            // Define character sets
+            const digits = '0123456789';
+            const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+            
+
+            // Generate the password
+            let password = '';
+            for (let i = 0; i < numDigits; i++) {
+                password += digits[Math.floor(Math.random() * digits.length)];
+            }
+            for (let i = 0; i < numUppercase; i++) {
+                password += uppercase[Math.floor(Math.random() * uppercase.length)];
+            }
+            for (let i = 0; i < numLowercase; i++) {
+                password += lowercase[Math.floor(Math.random() * lowercase.length)];
+            }
+
+            // Fill the rest of the password length with random characters from all sets
+            const allChars = digits + uppercase + lowercase;
+            while (password.length < length) {
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+
+            // Shuffle the password to ensure randomness
+            password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
+            // Display the result
+            document.getElementById('result').textContent = password;
+        }
+    </script>
+</body>
+</html>
+
+</body>
+
+</html>
